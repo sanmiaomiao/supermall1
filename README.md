@@ -1,4 +1,5 @@
 # supermall
+Vue 仿蘑菇街商城实战
 
 ## Project setup
 ```
