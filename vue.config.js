@@ -9,7 +9,7 @@ module.exports={
                 'views':'@/views',
 
             }
-        }
+        },
     },
   //配置完这里要跑一遍npm install webpack-dev-server -D
   devServer: {
@@ -25,6 +25,7 @@ module.exports={
       }
     }
   },
+
   }
 
 

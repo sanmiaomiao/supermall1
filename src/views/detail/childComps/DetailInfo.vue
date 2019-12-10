@@ -26,7 +26,7 @@
         <div class="kefu">
           <span>客服:</span>
           <div class="kefu-span">
-             <img src="../../../assets/img/home/star.svg" class="star">
+             <img src="../../../assets/img/detail/kefu.svg" class="star">
             <span class="kefu-lianxi">联系客服</span>
           </div>
         </div>

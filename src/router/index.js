@@ -13,6 +13,10 @@ const DetailVideo=()=>import('../components/content/DetailVideo/DetailVideo')
 const SaleVideo=()=>import('../components/content/SaleVideo/SaleVideo')
 const OnLive=()=>import('../components/content/live/OnLive')
 const Focus=()=>import('../components/content/focus/Focus')
+const Chat=()=>import('../components/content/chat/Chat')
+const TryLive=()=>import('../components/content/trylive/TryLive')
+const Record=()=>import('../components/content/trylive/Record')
+const BuzhuRecord=()=>import('../components/content/live/BuzhuRecord')
 //1.安装插件
 Vue.use(VueRouter)
 
@@ -66,6 +70,23 @@ const routes=[
   {
     path:'/focus',
     component:Focus
+  },
+  {
+    path:'/chat',
+    component:Chat
+  }
+  ,
+  {
+    path:'/trylive',
+    component:TryLive
+  }
+  ,
+  {
+    path:'/record',
+    component:Record
+  },{
+    path:'/buzhurecord',
+    component:BuzhuRecord
   }
 ]
 const router=new VueRouter({

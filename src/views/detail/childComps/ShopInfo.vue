@@ -5,7 +5,7 @@
       <img src="../../../assets/img/detail/liaotian.svg"/>
     </div>
     <div class="center">
-      <div class="center-span" @click="collectshop">收藏店铺</div>
+      <div class="center-span" @click="collectshop">关注店铺</div>
       <div >进入店铺</div>
 
     </div>

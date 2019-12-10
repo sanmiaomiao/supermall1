@@ -13,19 +13,19 @@
           </div>
           <div class="head-bottom">
             <div class="bottom-item">
-              <div>52</div>
+              <img src="../../assets/img/profile/shoucang.svg" class="zhibo_icon"/>
               <div>收藏夹</div>
             </div>
             <div class="bottom-item" @click="tofocus">
-              <div>13</div>
+              <img src="../../assets/img/profile/focus.svg" class="zhibo_icon"/>
               <div>我的关注</div>
             </div>
             <div class="bottom-item">
-              <div>29</div>
-              <div>足迹</div>
+              <img src="../../assets/img/profile/zhi_bo.svg" class="zhibo_icon"/>
+              <div @click="goToLiveRoom">我的直播间</div>
             </div>
             <div class="bottom-item">
-              <div>0</div>
+              <img src="../../assets/img/profile/hongbao.svg" class="zhibo_icon"/>
               <div>红包卡券</div>
             </div>
           </div>
@@ -86,14 +86,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
     </div>
 </template>
 
@@ -124,6 +116,9 @@
             tofocus(){
                 this.$router.history.push('/focus')
             },
+            goToLiveRoom(){
+                this.$router.history.push('/buzhurecord')
+            }
         }
 
     }
@@ -263,6 +258,9 @@
   .bottom-right-bottom-span{
 
 
+  }
+  .zhibo_icon{
+    width: 25px;
   }
 
 

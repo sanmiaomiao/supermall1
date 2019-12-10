@@ -1,11 +1,12 @@
 <template>
     <div class="on-live">
       <div class="input_video">
-        <video-player  class="video-player vjs-custom-skin"
+       <!-- <video-player  class="video-player vjs-custom-skin"
                        ref="videoPlayer"
                        :playsinline="true"
                        :options="playerOptions"
-        ></video-player>
+        ></video-player>-->
+        <try-live/>
       </div>
       <div class="live-cover">
       <div class="head-section">
@@ -68,10 +69,11 @@
 <script>
   import Focus from "../../common/focus/Focus";
   import LiveCommentsItem from "./LiveCommentsItem";
+  import TryLive from "../trylive/TryLive";
 
     export default {
         name: "OnLive",
-        components: {LiveCommentsItem, Focus},
+        components: {LiveCommentsItem, Focus,TryLive},
         data () {
             return {
                 // 视频播放

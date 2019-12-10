@@ -12,6 +12,15 @@ export function getgoodsdata(page,sort) {
     }
   })
 }
+export function gethomelun() {
+  console.log('gethomelun()')
+
+  return request({
+    url:"/homelun/",
+
+  })
+}
+
 
 
 

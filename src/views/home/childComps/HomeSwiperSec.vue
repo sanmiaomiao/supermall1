@@ -1,46 +1,53 @@
-<template>
-    <div class="js-swiper">
-      <div class="js-swiper-item" >
-       <img :src="pics[picindex]" />
-        <ul class="dots">
-          <li class="dots-item" v-for="(item,index) in pics" :key="item" @click="dotClick(index)">
-            <div class="dots-item-content" :class="{selected:index===picindex}"></div>
-          </li>
-        </ul>
-        <div class="left-right">
-          <div class="right" @click="rightClick">
-            <img src="../../../assets/img/detail/right.svg">
-          </div>
-          <div class="left" @click="leftClick">
-            <img src="../../../assets/img/detail/back_gray.svg">
-          </div>
-        </div>
 
+<template>
+  <div class="js-swiper">
+    <div class="js-swiper-item" :style="`height:${height}px`">
+      <img :src="pics[picindex]" :style="`height:${height}px`"  @load="imageLoad"/>
+      <ul class="dots">
+        <li class="dots-item" v-for="(item,index) in pics" :key="item" @click="dotClick(index)">
+          <div class="dots-item-content" :class="{selected:index===picindex}"></div>
+        </li>
+      </ul>
+      <div class="left-right">
+        <div class="right" @click="rightClick">
+          <img src="../../../assets/img/detail/right.svg">
+        </div>
+        <div class="left" @click="leftClick">
+          <img src="../../../assets/img/detail/back_gray.svg">
+        </div>
       </div>
+
     </div>
+  </div>
 </template>
 
 <script>
     export default {
-        name: "JsSwiper",
+        name: "HomeSwiperSec",
         data(){
             return{
                 pics:["https://s5.mogucdn.com/mlcdn/c45406/191104_8a6h9ai6dce1d498j4bdf2b59l2h2_800x800.jpg",
-            "https://s5.mogucdn.com/mlcdn/c45406/191104_2512bcg375a5kd858ff2e7g81bd7d_800x800.jpg",
-            "https://s11.mogucdn.com/mlcdn/c45406/191104_7laei7cdj14h281gl82308blh3b8a_800x800.jpg",
-            "https://s11.mogucdn.com/mlcdn/c45406/191104_1le215fgch2ddd7ife10e907l1jkj_800x800.jpg",
-            "https://s11.mogucdn.com/mlcdn/c45406/191104_45683l844e7k32lil9800i2g7j7h1_800x800.jpg"],
+                    "https://s5.mogucdn.com/mlcdn/c45406/191104_2512bcg375a5kd858ff2e7g81bd7d_800x800.jpg",
+                    "https://s11.mogucdn.com/mlcdn/c45406/191104_7laei7cdj14h281gl82308blh3b8a_800x800.jpg",
+                    "https://s11.mogucdn.com/mlcdn/c45406/191104_1le215fgch2ddd7ife10e907l1jkj_800x800.jpg",
+                    "https://s11.mogucdn.com/mlcdn/c45406/191104_45683l844e7k32lil9800i2g7j7h1_800x800.jpg"],
                 picindex:0,
                 dot:[1,2,3,4,5]
             }
         },
-        props: {
-            picInfo: {
-                type: Object,
-                default() {
+        props:{
+            picInfo:{
+                type:Object,
+                default(){
                     return {}
                 }
             },
+            height:{
+                type:Number,
+                default() {
+                    return 350;
+                }
+            }
         },
         mounted(){
             console.log('mounted');
@@ -57,9 +64,9 @@
             leftClick(){
                 console.log('left');
                 if(this.picindex===0){
-                   return false;
+                    return false;
                 }else{
-                 this.picindex--;
+                    this.picindex--;
                 }
 
             },
@@ -84,6 +91,14 @@
                     console.log(this.picInfo)
                 }
 
+
+            },
+            imageLoad(){
+                console.log('----');
+                if(!this.isLoad){
+                    this.$emit('imageLoad')
+                    this.isLoad=true
+                }
 
             }
         }
@@ -111,15 +126,15 @@
 
 
   }
-.js-swiper-item img{
-  width: 100%;
-  height: 350px;
-}
+  .js-swiper-item img{
+    width: 100%;
+    /* height: 350px;*/
+  }
   .dots{
     display: flex;
     width:60%;
     position: absolute;
-    top:300px;
+    top:80px;
   }
   .dots-item{
     flex: 1;
@@ -141,7 +156,7 @@
   }
   .left-right{
     position: absolute;
-    top:200px
+    top:50px
   }
   .right{
     background-color: transparent;

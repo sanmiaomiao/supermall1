@@ -189,7 +189,7 @@
                 /*//1.控制显示返回顶部按钮
                 this.isShow=-position.y>1000*/
                 //2.吸顶效果
-                console.log('contentScroll')
+              //  console.log('contentScroll')
                 this.isTabFixed=-(position.y)>this.tabOffsetTop
 
             },

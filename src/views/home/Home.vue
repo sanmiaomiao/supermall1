@@ -1,8 +1,9 @@
 <template>
     <div id="home">
-      <nav-bar class="home-nav">
-      <div slot="center">购物街</div>
-      </nav-bar>
+      <!--    <nav-bar class="home-nav">
+       <div slot="center">购物街</div>
+    </nav-bar>-->
+        <home-top-bar @search="search"/>
       <TabControl
         :titles="['流行','新款','精选']"
         @tabClick="tabClick"
@@ -15,7 +16,8 @@
               @scroll="contentScroll"
               :pull-up-load="true"
               @pullingUp="loadMore">
-        <HomeSwiper @imageLoad='setOffsetTop'></HomeSwiper>
+       <!-- <HomeSwiper @imageLoad='setOffsetTop'></HomeSwiper>-->
+        <home-swiper-sec  @imageLoad='setOffsetTop' :pic-info="homelunimg" :height="lunimgheight"/>
         <RecommendView></RecommendView>
         <FeatureView></FeatureView>
         <TabControl
@@ -27,34 +29,37 @@
         <goods-list :goods="showGoods" ref="goodslist"/>
       </scroll>
     <back-top @click.native="backClick" v-show='isShow'/>
+     <search-page :display="searchShow" @back="searchback"/>
     </div>
 </template>
 
 <script>
-  import NavBar from "../../components/common/navbar/NavBar";
-  import HomeSwiper from "./childComps/HomeSwiper";
+ import SearchPage from "./childComps/SearchPage";
+ import HomeTopBar from "./childComps/HomeTopBar";
+ import HomeSwiperSec from "./childComps/HomeSwiperSec";
   import RecommendView from "./childComps/RecommendView";
   import FeatureView from "./childComps/FeatureView";
   import TabControl from "../../components/content/tabControl/TabControl";
   import GoodsList from "../../components/content/goods/GoodsList";
   import Scroll from "../../components/common/sroll/Scroll";
   import BackTop from "../../components/content/backTop/BackTop";
+  import {getgoodsdata,gethomelun} from "../../network/home";
 
-  import {getgoodsdata} from "../../network/home";
 
 
 
   export default {
       name: "Home",
       components: {
+          HomeTopBar,
+          HomeSwiperSec,
           Scroll,
           GoodsList,
-          NavBar,
-          HomeSwiper,
           RecommendView,
           FeatureView,
           TabControl,
-          BackTop
+          BackTop,
+          SearchPage
 
       },
       data() {
@@ -69,6 +74,9 @@
               tabOffsetTop:0,
               isTabFixed:false,
               saveY:0,
+              homelunimg:[],
+              lunimgheight:110,
+              searchShow:false,
           }
       },
       created() {
@@ -86,6 +94,7 @@
               this.getdatafromls('new');
               this.getdatafromls('sell');
           }
+          this.gethomelunwrap()
 
       },
       computed:{
@@ -153,7 +162,14 @@
               this.goods[type].page=page;
               console.log(res)
           },
-
+          search(){
+            //显示搜索界面
+              this.searchShow=true;
+          },
+          searchback(){
+              //关闭搜索界面
+              this.searchShow=false;
+          },
 
           /**
            * 网络请求的方法
@@ -177,6 +193,16 @@
                   console.log(err);
               })
           },
+          gethomelunwrap(){
+           gethomelun().then(res=>{
+              console.log(res)
+              res.data[0].list.map(item=>this.homelunimg.push(item.image_800))
+
+               console.log(res.data[0])
+           }).catch(err=>{
+               console.log(err)
+           })
+          }
 
 
       }
